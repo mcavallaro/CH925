@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>fitLorenz</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-01-18"><meta name="DC.source" content="fitLorenz.m"><style type="text/css">
+      --><title>fitLorenz</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-07"><meta name="DC.source" content="fitLorenz.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Demonstration</a></li><li><a href="#2">Fit a circular arc to a short trajectory</a></li><li><a href="#3">Fit the ODE to the Circular Arc</a></li><li><a href="#5">Weird initial parameters</a></li><li><a href="#6">Fit a long trajectory</a></li><li><a href="#7">Weird initial parameters and long trajectory</a></li><li><a href="#8">Determinist chaos</a></li></ul></div><h2 id="1">Demonstration</h2><p>Lorenz system</p><pre class="codeinput">sigma = 10;
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Demonstration</a></li><li><a href="#2">Fit a circular arc to a short trajectory</a></li><li><a href="#3">Fit the ODE to the Circular Arc</a></li><li><a href="#5">Weird initial parameters</a></li><li><a href="#6">Fit a long trajectory</a></li><li><a href="#7">Weird initial parameters and long trajectory</a></li><li><a href="#8">Deterministic chaos</a></li></ul></div><h2 id="1">Demonstration</h2><p>Lorenz system</p><pre class="codeinput">sigma = 10;
 beta = 8/3;
 rho = 28;
 xt0 = [10,20,10];
@@ -113,7 +113,7 @@ its initial value is less than the default value of the function tolerance.
 
 
 
-</pre><img vspace="5" hspace="5" src="fitLorenz_02.png" alt=""> <h2 id="3">Fit the ODE to the Circular Arc</h2><p>Allow the initial point to change as  well (see notion of determistic chaos). To do so, write the function file Lorenz2 that takes the parameters and initial conditions of the ODE fit and calculates the trajectory over the times t.</p><pre class="codeinput">p0 = zeros(1,6);
+</pre><img vspace="5" hspace="5" src="fitLorenz_02.png" alt=""> <h2 id="3">Fit the ODE to the Circular Arc</h2><p>Allow the initial point to change as  well (see notion of deterministic chaos). To do so, write the function file Lorenz2 that takes the parameters and initial conditions of the ODE fit and calculates the trajectory over the times t.</p><pre class="codeinput">p0 = zeros(1,6);
 p0(1) = sigma;
 p0(2) = beta;
 p0(3) = rho;
@@ -240,8 +240,8 @@ its initial value is less than the selected value of the function tolerance.
 
 
 Old parameters: 1.000000, 1.000000, 3.000000 0.000000, 0.000000, 0.000000
-New parameters: 10.019968, 2.643680, 28.422263 9.775763, 20.610844, 11.847856
-</pre><img vspace="5" hspace="5" src="fitLorenz_05.png" alt=""> <img vspace="5" hspace="5" src="fitLorenz_06.png" alt=""> <h2 id="8">Determinist chaos</h2><p>Even <b>if</b> the fit work for a short time interval (and this is not trivial at all) there is no guarantee that it will work for making prediction far in the future.</p><pre class="codeinput">[~,fitted_ode]=ode45(@(t,y)Lorenz(t,y,pBest(1),pBest(2),pBest(3)),[0 10],pBest(4:6));
+New parameters: 10.246746, 2.633162, 28.032059 11.005244, 18.748920, 9.565023
+</pre><img vspace="5" hspace="5" src="fitLorenz_05.png" alt=""> <img vspace="5" hspace="5" src="fitLorenz_06.png" alt=""> <h2 id="8">Deterministic chaos</h2><p>Even <b>if</b> the fit work for a short time interval (and this is not trivial at all) there is no guarantee that it will work for making prediction far in the future.</p><pre class="codeinput">[~,fitted_ode]=ode45(@(t,y)Lorenz(t,y,pBest(1),pBest(2),pBest(3)),[0 10],pBest(4:6));
 [~,initial_ode]=ode45(@(t,y)Lorenz(t,y,p0(1),p0(2),p0(3)),[0 10],p0(4:6));
 
 figure
@@ -305,7 +305,7 @@ view([-30 -70])
 hold off
 
 %% Fit the ODE to the Circular Arc
-% Allow the initial point to change as  well (see notion of determistic chaos).
+% Allow the initial point to change as  well (see notion of deterministic chaos).
 % To do so, write the function file Lorenz2 that takes the
 % parameters and initial conditions of the ODE fit and
 % calculates the trajectory over the times t.
@@ -433,7 +433,7 @@ legend('true traejctory (data)', 'initial ODE Solution', 'fitted ODE Solution')
 view([-30 -70])
 hold off
 
-%% Determinist chaos
+%% Deterministic chaos
 % Even *if* the fit work for a short time interval (and this is not trivial at all)
 % there is no guarantee that it will work for making prediction far in the future.
 [~,fitted_ode]=ode45(@(t,y)Lorenz(t,y,pBest(1),pBest(2),pBest(3)),[0 10],pBest(4:6));

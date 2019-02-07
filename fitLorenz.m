@@ -47,7 +47,7 @@ view([-30 -70])
 hold off
 
 %% Fit the ODE to the Circular Arc
-% Allow the initial point to change as  well (see notion of determistic chaos).
+% Allow the initial point to change as  well (see notion of deterministic chaos).
 % To do so, write the function file Lorenz2 that takes the
 % parameters and initial conditions of the ODE fit and
 % calculates the trajectory over the times t.
@@ -175,7 +175,7 @@ legend('true traejctory (data)', 'initial ODE Solution', 'fitted ODE Solution')
 view([-30 -70])
 hold off
 
-%% Determinist chaos
+%% Deterministic chaos
 % Even *if* the fit work for a short time interval (and this is not trivial at all)
 % there is no guarantee that it will work for making prediction far in the future.
 [~,fitted_ode]=ode45(@(t,y)Lorenz(t,y,pBest(1),pBest(2),pBest(3)),[0 10],pBest(4:6));
